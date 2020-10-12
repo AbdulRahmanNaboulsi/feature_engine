@@ -1,7 +1,7 @@
 # Authors: Soledad Galli <solegalli@protonmail.com>
 # License: BSD 3 clause
 
-from typing import List, Optional
+from typing import List, Optional, Union
 
 import numpy as np
 import pandas as pd
@@ -32,7 +32,7 @@ class LogTransformer(BaseNumericalTransformer):
         will find and select all numerical variables.
     """
 
-    def __init__(self, base: str = "e", variables: Optional[List[str]] = None) -> None:
+    def __init__(self, base: str = "e", variables: Union[List[str], str] = None) -> None:
 
         if base not in ["e", "10"]:
             raise ValueError("base can take only '10' or 'e' as values")
@@ -40,7 +40,7 @@ class LogTransformer(BaseNumericalTransformer):
         self.variables = _define_variables(variables)
         self.base = base
 
-    def fit(self, X: pd.DataFrame, y: Optional[str] = None):
+    def fit(self, X: pd.DataFrame, y: Optional[pd.Series] = None):
         """
         Selects the numerical variables and determines whether the logarithm
         can be applied on the selected variables (it checks if the variables
@@ -48,8 +48,8 @@ class LogTransformer(BaseNumericalTransformer):
 
         Args:
             X: Pandas DataFrame of shape = [n_samples, n_features].
-                The training input samples.
-                Can be the entire dataframe, not just the variables to transform.
+               The training input samples.
+               Can be the entire dataframe, not just the variables to transform.
 
             y: It is not needed in this transformer. Defaults to None.
 
@@ -75,7 +75,7 @@ class LogTransformer(BaseNumericalTransformer):
 
     def transform(self, X: pd.DataFrame) -> pd.DataFrame:
         """
-        Transforms the variables using log transformation.
+        Transforms the variables using the logarithm.
 
         Args:
             X: pandas dataframe of shape = [n_samples, n_features]

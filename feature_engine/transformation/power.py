@@ -32,7 +32,7 @@ class PowerTransformer(BaseNumericalTransformer):
     """
 
     def __init__(
-        self, exp: Union[float, int] = 0.5, variables: Optional[List[str]] = None
+        self, exp: Union[float, int] = 0.5, variables: Union[List[str], str] = None
     ):
 
         if not isinstance(exp, (float, int)):
@@ -41,7 +41,7 @@ class PowerTransformer(BaseNumericalTransformer):
         self.exp = exp
         self.variables = _define_variables(variables)
 
-    def fit(self, X: pd.DataFrame, y: Optional[str] = None):
+    def fit(self, X: pd.DataFrame, y: Optional[pd.Series] = None):
         """
         Fits the power transformation.
 

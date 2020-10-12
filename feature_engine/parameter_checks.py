@@ -7,14 +7,14 @@ def _define_numerical_dict(dict_: Optional[dict]) -> Optional[dict]:
     Can take None as argument.
 
     Args:
-        the_dict: Dict to perform check against
+        dict_: Dictionary to check
 
     Raises:
         ValueError: If all values of dict are not int or float
         TypeError: When argument type is not dict
 
     Returns:
-        None or the dict
+        None or the dictionary
     """
 
     if not dict_:

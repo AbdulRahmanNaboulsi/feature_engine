@@ -1,15 +1,19 @@
 from typing import List, Optional
 
 import pandas as pd
-from feature_engine.dataframe_checks import (_check_input_matches_training_df,
-                                             _is_dataframe)
-from feature_engine.variable_manipulation import (_define_variables,
-                                                  _find_all_variables,
-                                                  _find_numerical_variables)
-
 from sklearn.base import BaseEstimator, TransformerMixin
 from sklearn.impute import SimpleImputer
 from sklearn.preprocessing import OneHotEncoder, OrdinalEncoder
+
+from feature_engine.dataframe_checks import (
+    _check_input_matches_training_df,
+    _is_dataframe,
+)
+from feature_engine.variable_manipulation import (
+    _define_variables,
+    _find_all_variables,
+    _find_numerical_variables,
+)
 
 
 class SklearnTransformerWrapper(BaseEstimator, TransformerMixin):
@@ -44,8 +48,8 @@ class SklearnTransformerWrapper(BaseEstimator, TransformerMixin):
 
     def fit(self, X: pd.DataFrame, y: Optional[str] = None):
         """
-        The `fit` method allows Scikit-learn transformers to learn
-        the required parameters from the training data set.
+        The `fit` method allows Scikit-learn transformers to learn the required
+        parameters from the training data set.
 
         If transformer is OneHotEncoder, OrdinalEncoder or SimpleImputer,
         all variables indicated in the ```variables``` parameter will be transformed.
@@ -88,10 +92,10 @@ class SklearnTransformerWrapper(BaseEstimator, TransformerMixin):
         Apply the transformation to the dataframe.
         Only the selected features will be modified.
 
-        If transformer is OneHotEncoder, dummy features are concatenated
-        to the source dataset. Note that the original categorical variables
-        will not be removed from the dataset after encoding. If this is the desired
-        effect, please use Feature-engine's OneHotCategoricalEncoder instead.
+        If transformer is OneHotEncoder, dummy features are concatenated to the source
+        dataset. Note that the original categorical variables will not be removed from
+        the dataset after encoding. If this is the desired effect, please use
+        Feature-engine's OneHotCategoricalEncoder instead.
 
         Args:
             X: Pandas DataFrame to perform desired transformation

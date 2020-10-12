@@ -68,7 +68,7 @@ class MathematicalCombination(BaseNumericalTransformer):
         mathematical transformations, enter 6 new variable names.
 
         The name of the variables indicated by the user should coincide with the order
-        in which the mathematical operations are initialized in the transformer.
+        in which the mathematical operations are initialised in the transformer.
         That is, if you set math_operations = ['mean', 'prod'], the first new variable
         name will be assigned to the mean of the variables and the second variable name
         to the product of the variables.
@@ -80,9 +80,10 @@ class MathematicalCombination(BaseNumericalTransformer):
     """
 
     def __init__(
-        self, variables: Optional[List[str]] = None,
+        self,
+        variables: Optional[List[str]] = None,
         math_operations: Optional[List[str]] = None,
-        new_variables_names: Optional[List[str]] = None
+        new_variables_names: Optional[List[str]] = None,
     ) -> None:
 
         if math_operations is None:
@@ -122,8 +123,8 @@ class MathematicalCombination(BaseNumericalTransformer):
 
     def fit(self, X: pd.DataFrame, y: Optional[str] = None):
         """
-        Performs dataframe checks.
-        Selects variables to transform if None were indicated.
+        Performs dataframe checks. Determines which operations should be applied
+        and matches operations to new column names.
 
         Args:
             X: pandas dataframe of shape = [n_samples, n_features]

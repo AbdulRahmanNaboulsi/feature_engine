@@ -7,9 +7,11 @@ import pandas as pd
 from sklearn.base import BaseEstimator, TransformerMixin
 from sklearn.utils.validation import check_is_fitted
 
-from feature_engine.dataframe_checks import (_check_contains_na,
-                                             _check_input_matches_training_df,
-                                             _is_dataframe)
+from feature_engine.dataframe_checks import (
+    _check_contains_na,
+    _check_input_matches_training_df,
+    _is_dataframe,
+)
 from feature_engine.variable_manipulation import _find_numerical_variables
 
 
@@ -17,9 +19,9 @@ class BaseNumericalTransformer(BaseEstimator, TransformerMixin):
     # shared set-up procedures across numerical transformers, i.e.,
     # variable transformers, discretisers, math combination
 
-    def fit(self, X: pd.DataFrame, y: Optional[str] = None) -> pd.DataFrame:
+    def fit(self, X: pd.DataFrame, y: Optional[pd.Series] = None) -> pd.DataFrame:
         """
-        Fits the transformation to the DataFrame.
+        Checks the DataFrame and learns parameters from data.
 
         Args:
             X: Pandas DataFrame to fit the transformation
@@ -28,7 +30,7 @@ class BaseNumericalTransformer(BaseEstimator, TransformerMixin):
             Defaults to None.
 
         Returns:
-            DataFrame with fitted transformation
+            None
 
         """
 

@@ -1,7 +1,7 @@
 # Authors: Soledad Galli <solegalli@protonmail.com>
 # License: BSD 3 clause
 
-from typing import List, Optional
+from typing import List, Optional, Union
 
 import pandas as pd
 import scipy.stats as stats
@@ -40,11 +40,11 @@ class BoxCoxTransformer(BaseNumericalTransformer):
         transfomration} pairs. These are determined automatically.
     """
 
-    def __init__(self, variables: Optional[List[str]] = None) -> None:
+    def __init__(self, variables: Union[List[str], str] = None) -> None:
 
         self.variables = _define_variables(variables)
 
-    def fit(self, X: pd.DataFrame, y: Optional[str] = None):
+    def fit(self, X: pd.DataFrame, y: Optional[pd.Series] = None):
         """
         Learns the optimal lambda for the BoxCox transformation.
 

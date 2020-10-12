@@ -10,16 +10,16 @@ def _is_dataframe(X: pd.DataFrame) -> pd.DataFrame:
     """
     Checks if the input is a DataFrame.
     Creates the copy of the initial DataFrame.
+    Important not to transform the original dataset.
 
     Args:
         X: Argument to perform check against
 
     Raises:
-        TypeError: If the input is not the Pandas DataFrame
+        TypeError: If the input is not a Pandas DataFrame
 
     Returns:
-        The copy of initial DataFrame.
-        Important not to transform the original dataset.
+        A copy of the initial DataFrame.
     """
 
     if not isinstance(X, pd.DataFrame):
